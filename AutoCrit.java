@@ -12,10 +12,22 @@ import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.ActionResult;
 
 public final class AutoCrit {
+    private static boolean resprint = false;
+
     private AutoCrit() {
     }
 
     public static void register() {
+        // Setelah hit, kasih tau server kalau kita masih sprint (biar ga desync)
+        net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (!resprint) return;
+            resprint = false;
+            ClientPlayerEntity p = client.player;
+            if (p != null && p.networkHandler != null && p.isSprinting()) {
+                p.networkHandler.sendPacket(new ClientCommandC2SPacket(p, ClientCommandC2SPacket.Mode.START_SPRINTING));
+            }
+        });
+
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!world.isClient() || !BetterPvPConfig.autoCrit) return ActionResult.PASS;
 
@@ -47,6 +59,7 @@ public final class AutoCrit {
 
         if (BetterPvPConfig.critWhileSprinting && p.isSprinting()) {
             net.sendPacket(new ClientCommandC2SPacket(p, ClientCommandC2SPacket.Mode.STOP_SPRINTING));
+            resprint = true;
         }
 
         if (p.isOnGround() || p.fallDistance <= 0) {

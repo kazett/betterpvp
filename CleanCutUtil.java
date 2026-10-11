@@ -38,13 +38,13 @@ public final class CleanCutUtil {
             return null;
         }
 
-        double reach = player.getBlockInteractionRange();
+        double reach = player.getEntityInteractionRange();
         Vec3d start = player.getCameraPosVec(1.0f);
         Vec3d look = player.getRotationVec(1.0f);
         Vec3d end = start.add(look.x * reach, look.y * reach, look.z * reach);
 
         EntityHitResult hit = ProjectileUtil.raycast(
-                player, start, end, new Box(start, end),
+                player, start, end, player.getBoundingBox().stretch(look.multiply(reach)).expand(1.0),
                 entity -> !entity.isSpectator() && entity.isAttackable(),
                 reach * reach);
 
