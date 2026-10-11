@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.ActionResult;
 
@@ -23,33 +24,38 @@ public final class AutoCrit {
             if (self == null || player != self || mc.getNetworkHandler() == null) {
                 return ActionResult.PASS;
             }
-            if (entity instanceof LivingEntity && canCrit(self)) {
-                sendCritPackets(self);
+            if (entity instanceof LivingEntity && eligible(self)) {
+                apply(self);
             }
             return ActionResult.PASS;
         });
     }
 
-    private static boolean canCrit(ClientPlayerEntity p) {
+    private static boolean eligible(ClientPlayerEntity p) {
         if (BetterPvPConfig.critOnlyFullCharge && p.getAttackCooldownProgress(0.5f) <= 0.9f) {
             return false;
         }
-        return p.isOnGround()
-                && !p.isTouchingWater()
+        return !p.isTouchingWater()
                 && !p.isInLava()
                 && !p.isClimbing()
                 && !p.hasVehicle()
                 && !p.hasStatusEffect(StatusEffects.BLINDNESS);
     }
 
-    private static void sendCritPackets(ClientPlayerEntity p) {
-        double x = p.getX();
-        double y = p.getY();
-        double z = p.getZ();
-        boolean hc = p.horizontalCollision;
+    private static void apply(ClientPlayerEntity p) {
         var net = p.networkHandler;
 
-        net.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, y + 0.0625, z, false, hc));
-        net.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, y, z, false, hc));
+        if (BetterPvPConfig.critWhileSprinting && p.isSprinting()) {
+            net.sendPacket(new ClientCommandC2SPacket(p, ClientCommandC2SPacket.Mode.STOP_SPRINTING));
+        }
+
+        if (p.isOnGround() || p.fallDistance <= 0) {
+            double x = p.getX();
+            double y = p.getY();
+            double z = p.getZ();
+            boolean hc = p.horizontalCollision;
+            net.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, y + 0.0625, z, false, hc));
+            net.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, y, z, false, hc));
+        }
     }
 }

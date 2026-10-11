@@ -38,7 +38,7 @@ def genDir = layout.buildDirectory.get().asFile.toPath().resolve("generated").to
 tasks.register('stageSources', Sync) {
     into genDir
 
-    from(files('BetterPvP.java', 'Main.java', 'AutoCrit.java')) { into 'java/id/betterpvp' }
+    from(files('BetterPvP.java', 'Main.java', 'AutoCrit.java', 'JumpReset.java')) { into 'java/id/betterpvp' }
     from(files('BetterPvPConfig.java', 'KeyBindingConfig.java')) { into 'java/id/betterpvp/config' }
     from(files('AutoAttackMixin.java', 'GameRenderMixin.java')) { into 'java/id/betterpvp/mixin' }
     from(files('CleanCutUtil.java', 'WeaponFilter.java')) { into 'java/id/betterpvp/util' }

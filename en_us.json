@@ -12,6 +12,8 @@
   "betterpvp.midnightconfig.headerCrit": "== AUTO CRIT ==",
   "betterpvp.midnightconfig.autoCrit": "Auto Crit (critical hits without jumping)",
   "betterpvp.midnightconfig.critOnlyFullCharge": "Only crit when the attack bar is above 90%",
+  "betterpvp.midnightconfig.critWhileSprinting": "Crit even while sprinting",
+  "betterpvp.midnightconfig.jumpReset": "Jump Reset (auto jump when you get hit)",
   "betterpvp.midnightconfig.headerMisc": "== OTHER ==",
   "betterpvp.midnightconfig.preventsHittingBlocks": "Prevents you from hitting blocks in all tools",
   "betterpvp.midnightconfig.preventsHittingBlocksSwords": "Prevents you from hitting blocks only in swords",

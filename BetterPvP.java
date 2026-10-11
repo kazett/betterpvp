@@ -28,6 +28,7 @@ public class BetterPvP implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         AutoCrit.register();
+        JumpReset.register();
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             autoMeleeTick(client);
             autoBowTick(client);

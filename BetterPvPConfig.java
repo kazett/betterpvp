@@ -37,6 +37,12 @@ public class BetterPvPConfig extends MidnightConfig {
     @Entry
     public static boolean critOnlyFullCharge = true;
 
+    @Entry
+    public static boolean critWhileSprinting = true;
+
+    @Entry
+    public static boolean jumpReset = true;
+
     @Comment
     public static Comment headerMisc;
 
