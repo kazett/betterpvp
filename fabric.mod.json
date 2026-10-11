@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "betterpvp",
+  "version": "${version}",
+  "name": "Better PvP",
+  "description": "Auto Attack + Auto Critical dalam satu mod. Config bisa atur senjata (sword/axe/dll), keybind bisa diganti di Controls.",
+  "authors": [
+    "kazet"
+  ],
+  "license": "MIT",
+  "icon": "assets/betterpvp/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "id.betterpvp.Main"
+    ],
+    "client": [
+      "id.betterpvp.BetterPvP",
+      "id.betterpvp.config.KeyBindingConfig"
+    ]
+  },
+  "mixins": [
+    "betterpvp.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "fabric-api": "*",
+    "midnightlib": "*",
+    "minecraft": "1.21.11",
+    "java": ">=21"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "id.betterpvp.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+    "AutoAttackMixin",
+    "GameRenderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

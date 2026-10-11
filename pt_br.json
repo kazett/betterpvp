@@ -1,0 +1,18 @@
+{
+  "betterpvp.midnightconfig.title": "Configuração do AutoAttack",
+  "betterpvp.midnightconfig.text1": "Auto Attack faz com que segurar o botão de ataque auto ataca com a espada.",
+  "betterpvp.midnightconfig.preventsHittingBlocks": "Previne você de quebrar blocos com todas as ferramentas",
+  "betterpvp.midnightconfig.preventsHittingBlocksSwords": "Previne você de quebrar blocos apenas com espadas",
+  "betterpvp.midnightconfig.cleanCut": "Atacar inimigos através de obstáculos (similar ao mod CleanCut)",
+  "betterpvp.midnightconfig.autoBow": "Lança automaticamente o Arco e Flecha",
+  "betterpvp.midnightconfig.autoCrossBow": "Lança automaticamente o CrossBow",
+  "betterpvp.midnightconfig.autoTrident": "Lança automaticamente o Tridente",
+  "betterpvp.midnightconfig.afkAttack": "Ataca automaticamente estando AFK",
+  "key.category.betterpvp.main": "AutoAttack",
+  "key.betterpvp.preventsHittingBlocks": "Alterna entre Prevenir a quebra de blocos",
+  "key.betterpvp.afkAttack": "Alterna entre Ataque em modo afk",
+  "text.KeyBindingConfig.preventsHittingBlocks.OFF": "Previne quebrar blocos com todas as ferramentas DESATIVADO!",
+  "text.KeyBindingConfig.preventsHittingBlocks.ON": "Previne quebrar blocos com todas as ferramentas ATIVADO!",
+  "text.KeyBindingConfig.afkAttack.OFF": "Ataque em modo afk DESATIVADO!",
+  "text.KeyBindingConfig.afkAttack.ON": "Ataque em modo afk ATIVADO!"
+}
